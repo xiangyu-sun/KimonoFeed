@@ -35,7 +35,3 @@ extension CGRect {
         return (first: slices.slice, second: slices.remainder)
     }
 }
-
-extension UIColor {
-    static let appBackgroundColor = #colorLiteral(red: 0.05882352941, green: 0.09019607843, blue: 0.1098039216, alpha: 1)
-}

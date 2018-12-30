@@ -30,6 +30,7 @@ class FeedCollectionViewController: UICollectionViewController {
     
     private func config(cell: ImageCollectionViewCell, with photo: BriefPhotoInfo) {
         cell.titleLabel.text = photo.title
+        cell.ownerLabel.text = photo.owner
     }
 
     // MARK: UICollectionViewDataSource

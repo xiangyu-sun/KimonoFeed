@@ -20,35 +20,67 @@
                         <collectionViewLayout key="collectionViewLayout" id="kod-bb-4eN" customClass="FancyLayout" customModule="KimonoFeed" customModuleProvider="target"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="I71-IK-dyr" customClass="ImageCollectionViewCell" customModule="KimonoFeed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="102.66666666666667" y="0.0" width="209" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="209" height="245"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-VK-2Qo">
-                                            <rect key="frame" x="2" y="245" width="198" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MTT-17-7XU">
-                                            <rect key="frame" x="2" y="2" width="198" height="241"/>
-                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-K8-miA">
+                                            <rect key="frame" x="8" y="0.0" width="193" height="245"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="MTT-17-7XU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="193" height="122"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8ej-7O-HuD">
+                                                    <rect key="frame" x="0.0" y="124" width="36.666666666666664" height="121"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="C9H-8T-rVf">
+                                                            <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="100.33333333333333"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B62-f3-Xyd">
+                                                                    <rect key="frame" x="0.0" y="84.666666666666657" width="33" height="15.666666666666671"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz7-l3-HNj">
+                                                                    <rect key="frame" x="33" y="84.666666666666657" width="3.6666666666666643" height="15.666666666666671"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-VK-2Qo">
+                                                            <rect key="frame" x="0.0" y="105.33333333333334" width="33" height="15.666666666666671"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Mtc-VK-2Qo" secondAttribute="trailing" constant="2" id="7Mz-bC-Zst"/>
-                                    <constraint firstItem="MTT-17-7XU" firstAttribute="top" secondItem="I71-IK-dyr" secondAttribute="top" constant="2" id="7iT-sQ-qJc"/>
-                                    <constraint firstItem="MTT-17-7XU" firstAttribute="leading" secondItem="I71-IK-dyr" secondAttribute="leading" constant="2" id="bpN-hI-B4v"/>
-                                    <constraint firstItem="Mtc-VK-2Qo" firstAttribute="top" secondItem="MTT-17-7XU" secondAttribute="bottom" constant="2" id="dCx-un-j0n"/>
-                                    <constraint firstAttribute="trailing" secondItem="MTT-17-7XU" secondAttribute="trailing" constant="2" id="faO-Qa-08M"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mtc-VK-2Qo" secondAttribute="bottom" constant="2" id="ikU-d3-nSG"/>
-                                    <constraint firstItem="Mtc-VK-2Qo" firstAttribute="leading" secondItem="I71-IK-dyr" secondAttribute="leading" constant="2" id="zdN-AH-IY5"/>
+                                    <constraint firstItem="zB7-K8-miA" firstAttribute="leading" secondItem="I71-IK-dyr" secondAttribute="leading" constant="8" id="2ZN-f0-Ktr"/>
+                                    <constraint firstAttribute="trailing" secondItem="zB7-K8-miA" secondAttribute="trailing" constant="8" id="LdP-v6-viB"/>
+                                    <constraint firstAttribute="bottom" secondItem="zB7-K8-miA" secondAttribute="bottom" id="Pnx-l1-liy"/>
+                                    <constraint firstItem="zB7-K8-miA" firstAttribute="top" secondItem="I71-IK-dyr" secondAttribute="top" id="c5C-ed-r36"/>
                                 </constraints>
+                                <size key="customSize" width="209" height="245"/>
                                 <connections>
+                                    <outlet property="dateLabel" destination="Jz7-l3-HNj" id="CN3-jX-ySv"/>
                                     <outlet property="imageView" destination="MTT-17-7XU" id="BEE-TQ-4CF"/>
+                                    <outlet property="ownerLabel" destination="B62-f3-Xyd" id="Sws-81-zRN"/>
                                     <outlet property="titleLabel" destination="Mtc-VK-2Qo" id="TMc-EE-VLH"/>
                                 </connections>
                             </collectionViewCell>

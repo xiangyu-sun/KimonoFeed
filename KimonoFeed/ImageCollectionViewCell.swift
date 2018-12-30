@@ -11,6 +11,8 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var ownerLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var imageTask: URLSessionDataTask?
     var imageInfoTask: URLSessionDataTask?
@@ -24,11 +26,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        let redColor = CGFloat(arc4random_uniform(255)) / 255.0
-        let greenColor = CGFloat(arc4random_uniform(255)) / 255.0
-        let blueColor = CGFloat(arc4random_uniform(255)) / 255.0
-        self.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1.0)
     }
     
     override func prepareForReuse() {
@@ -56,7 +53,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         }
         imageTask?.resume()
         
-        let infourl = URL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=14740156d6ac44b049ea94e201a50458&text=kimono&format=json&nojsoncallback=1")!
+        let infourl = URL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=14740156d6ac44b049ea94e201a50458&format=json&nojsoncallback=1&photo_id=\(photo.id)")!
         let inforequest = URLRequest(url: infourl, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
         
         imageInfoTask = URLSession.shared.dataTask(with: inforequest) { (data, response, error) in
@@ -64,7 +61,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
                 do {
                     let photo = try JSONDecoder().decode(Photo.self, from: infoData)
                     DispatchQueue.main.async {
-                        photo
+                        self.dateLabel.text = photo.dates.posted
+                        
+                        photo.publiceditability.cancomment
                     }
                 } catch {
                     

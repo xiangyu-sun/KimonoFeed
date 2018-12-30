@@ -12,6 +12,7 @@
 		462F64D421D2A6F30040207A /* exmple.json in Resources */ = {isa = PBXBuildFile; fileRef = 462F64D321D2A6F30040207A /* exmple.json */; };
 		462F64D721D65AC70040207A /* FancyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F64D621D65AC70040207A /* FancyLayout.swift */; };
 		462F64D921D91B740040207A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F64D821D91B740040207A /* Utilities.swift */; };
+		462F64DB21D92C6D0040207A /* UIView+Corner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F64DA21D92C6D0040207A /* UIView+Corner.swift */; };
 		46AF8EAF21CE991500FE14DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AF8EAE21CE991500FE14DF /* AppDelegate.swift */; };
 		46AF8EB421CE991500FE14DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46AF8EB221CE991500FE14DF /* Main.storyboard */; };
 		46AF8EB621CE991600FE14DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46AF8EB521CE991600FE14DF /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		462F64D321D2A6F30040207A /* exmple.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exmple.json; sourceTree = "<group>"; };
 		462F64D621D65AC70040207A /* FancyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyLayout.swift; sourceTree = "<group>"; };
 		462F64D821D91B740040207A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		462F64DA21D92C6D0040207A /* UIView+Corner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Corner.swift"; sourceTree = "<group>"; };
 		46AF8EAB21CE991500FE14DF /* KimonoFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KimonoFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46AF8EAE21CE991500FE14DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46AF8EB321CE991500FE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				462F64CF21D278EB0040207A /* FeedViewModel.swift */,
 				46AF8ED021CE9FFD00FE14DF /* ImageCollectionViewCell.swift */,
 				462F64D621D65AC70040207A /* FancyLayout.swift */,
+				462F64DA21D92C6D0040207A /* UIView+Corner.swift */,
 				462F64D821D91B740040207A /* Utilities.swift */,
 				462F64D321D2A6F30040207A /* exmple.json */,
 				46AF8EB221CE991500FE14DF /* Main.storyboard */,
@@ -219,6 +222,7 @@
 				462F64D221D2A65A0040207A /* Model.swift in Sources */,
 				46AF8ED121CE9FFD00FE14DF /* ImageCollectionViewCell.swift in Sources */,
 				462F64D921D91B740040207A /* Utilities.swift in Sources */,
+				462F64DB21D92C6D0040207A /* UIView+Corner.swift in Sources */,
 				46AF8ECF21CE9B2000FE14DF /* FeedCollectionViewController.swift in Sources */,
 				462F64D021D278EB0040207A /* FeedViewModel.swift in Sources */,
 				46AF8EAF21CE991500FE14DF /* AppDelegate.swift in Sources */,
