@@ -15,6 +15,22 @@ class ImageCollectionViewCell: UICollectionViewCell {
     var imageTask: URLSessionDataTask?
     var imageInfoTask: URLSessionDataTask?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.clipsToBounds = true
+        self.autoresizesSubviews = true
+        
+        imageView.frame = self.bounds
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        let redColor = CGFloat(arc4random_uniform(255)) / 255.0
+        let greenColor = CGFloat(arc4random_uniform(255)) / 255.0
+        let blueColor = CGFloat(arc4random_uniform(255)) / 255.0
+        self.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1.0)
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
