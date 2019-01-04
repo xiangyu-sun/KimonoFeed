@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -91,6 +92,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="6wd-QI-Bqy"/>
+                    <connections>
+                        <segue destination="fbi-0A-MZb" kind="show" identifier="ShowPhotoDetail" id="giA-5e-Mfp"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qd5-8h-Pcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,6 +117,99 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFI-1f-QIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="805.60000000000002" y="-65.217391304347828"/>
+        </scene>
+        <!--Zoomable View Controller-->
+        <scene sceneID="D3K-3d-D14">
+            <objects>
+                <viewController storyboardIdentifier="ZoomableViewController" automaticallyAdjustsScrollViewInsets="NO" id="inS-ub-crg" customClass="ZoomableViewController" customModule="FluidPhoto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1hp-1U-KnO"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Y9-mv-jo5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="flZ-Zp-b5C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="6Mo-FC-bgn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oKS-nR-8T7">
+                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="oKS-nR-8T7" firstAttribute="top" secondItem="6Mo-FC-bgn" secondAttribute="top" id="5q3-Ls-u0P"/>
+                                    <constraint firstAttribute="trailing" secondItem="oKS-nR-8T7" secondAttribute="trailing" id="SWo-yg-KO6"/>
+                                    <constraint firstAttribute="bottom" secondItem="oKS-nR-8T7" secondAttribute="bottom" id="j1s-7W-Dm2"/>
+                                    <constraint firstItem="oKS-nR-8T7" firstAttribute="leading" secondItem="6Mo-FC-bgn" secondAttribute="leading" id="r0e-7e-TLe"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6Mo-FC-bgn" secondAttribute="trailing" id="8FN-YK-fEm"/>
+                            <constraint firstAttribute="bottom" secondItem="6Mo-FC-bgn" secondAttribute="bottom" id="cVL-xa-Ybb"/>
+                            <constraint firstItem="6Mo-FC-bgn" firstAttribute="top" secondItem="flZ-Zp-b5C" secondAttribute="top" id="l9O-lY-OAf"/>
+                            <constraint firstItem="6Mo-FC-bgn" firstAttribute="leading" secondItem="flZ-Zp-b5C" secondAttribute="leading" id="mbA-jC-DDG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nFm-JJ-w58"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="oKS-nR-8T7" id="mI4-CZ-Lo5"/>
+                        <outlet property="imageViewBottomConstraint" destination="j1s-7W-Dm2" id="ybg-pp-lSF"/>
+                        <outlet property="imageViewLeadingConstraint" destination="r0e-7e-TLe" id="VRo-dw-927"/>
+                        <outlet property="imageViewTopConstraint" destination="5q3-Ls-u0P" id="V8t-SQ-Ybz"/>
+                        <outlet property="imageViewTrailingConstraint" destination="SWo-yg-KO6" id="ggU-a4-XAs"/>
+                        <outlet property="scrollView" destination="6Mo-FC-bgn" id="NwK-Gr-C8J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ASa-gq-Hcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4028" y="-20"/>
+        </scene>
+        <!--Zoom-->
+        <scene sceneID="pRU-EM-iLn">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fbi-0A-MZb" customClass="PageViewControllerContainer" customModule="FluidPhoto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p8d-22-3zZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="SvU-ku-OIq"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="ZXO-rm-AJ9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxC-WI-byh">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="gaV-EJ-EZm" kind="embed" id="kdb-cT-yaF"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="RxC-WI-byh" secondAttribute="bottom" id="8Ga-GX-0s2"/>
+                            <constraint firstAttribute="trailing" secondItem="RxC-WI-byh" secondAttribute="trailing" id="KQu-Mh-SXH"/>
+                            <constraint firstItem="RxC-WI-byh" firstAttribute="top" secondItem="ZXO-rm-AJ9" secondAttribute="top" id="ehZ-VX-kz4"/>
+                            <constraint firstItem="RxC-WI-byh" firstAttribute="leading" secondItem="ZXO-rm-AJ9" secondAttribute="leading" id="p24-X1-rSK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pez-dD-YTY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Zoom" id="5VD-XW-xRG"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wwY-GO-lqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2496" y="-19"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="kfR-Pk-3Bu">
+            <objects>
+                <pageViewController automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" pageSpacing="10" navigationOrientation="horizontal" spineLocation="none" id="gaV-EJ-EZm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7nK-5v-m7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3333" y="-19"/>
         </scene>
     </scenes>
 </document>

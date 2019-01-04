@@ -13,6 +13,11 @@
 		462F64D721D65AC70040207A /* FancyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F64D621D65AC70040207A /* FancyLayout.swift */; };
 		462F64D921D91B740040207A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F64D821D91B740040207A /* Utilities.swift */; };
 		462F64DB21D92C6D0040207A /* UIView+Corner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F64DA21D92C6D0040207A /* UIView+Corner.swift */; };
+		4635DD8D21DF86BF002C8061 /* PhotoPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD8C21DF86BF002C8061 /* PhotoPageContainerViewController.swift */; };
+		4635DD8F21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD8E21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift */; };
+		4635DD9621DF87D0002C8061 /* ZoomTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD9321DF87D0002C8061 /* ZoomTransitionController.swift */; };
+		4635DD9721DF87D0002C8061 /* ZoomDismissalInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD9421DF87D0002C8061 /* ZoomDismissalInteractionController.swift */; };
+		4635DD9821DF87D0002C8061 /* ZoomAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD9521DF87D0002C8061 /* ZoomAnimator.swift */; };
 		46AF8EAF21CE991500FE14DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AF8EAE21CE991500FE14DF /* AppDelegate.swift */; };
 		46AF8EB421CE991500FE14DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46AF8EB221CE991500FE14DF /* Main.storyboard */; };
 		46AF8EB621CE991600FE14DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46AF8EB521CE991600FE14DF /* Assets.xcassets */; };
@@ -39,6 +44,12 @@
 		462F64D621D65AC70040207A /* FancyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyLayout.swift; sourceTree = "<group>"; };
 		462F64D821D91B740040207A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		462F64DA21D92C6D0040207A /* UIView+Corner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Corner.swift"; sourceTree = "<group>"; };
+		4635DD8C21DF86BF002C8061 /* PhotoPageContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPageContainerViewController.swift; sourceTree = "<group>"; };
+		4635DD8E21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		4635DD9321DF87D0002C8061 /* ZoomTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionController.swift; sourceTree = "<group>"; };
+		4635DD9421DF87D0002C8061 /* ZoomDismissalInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomDismissalInteractionController.swift; sourceTree = "<group>"; };
+		4635DD9521DF87D0002C8061 /* ZoomAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomAnimator.swift; sourceTree = "<group>"; };
+		4635DD9921DF8F93002C8061 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		46AF8EAB21CE991500FE14DF /* KimonoFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KimonoFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46AF8EAE21CE991500FE14DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46AF8EB321CE991500FE14DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +81,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4635DD9221DF87D0002C8061 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				4635DD9321DF87D0002C8061 /* ZoomTransitionController.swift */,
+				4635DD9421DF87D0002C8061 /* ZoomDismissalInteractionController.swift */,
+				4635DD9521DF87D0002C8061 /* ZoomAnimator.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		46AF8EA221CE991500FE14DF = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +112,7 @@
 		46AF8EAD21CE991500FE14DF /* KimonoFeed */ = {
 			isa = PBXGroup;
 			children = (
+				4635DD9921DF8F93002C8061 /* README.md */,
 				46AF8EAE21CE991500FE14DF /* AppDelegate.swift */,
 				46AF8ECE21CE9B2000FE14DF /* FeedCollectionViewController.swift */,
 				462F64D121D2A65A0040207A /* Model.swift */,
@@ -99,7 +121,10 @@
 				462F64D621D65AC70040207A /* FancyLayout.swift */,
 				462F64DA21D92C6D0040207A /* UIView+Corner.swift */,
 				462F64D821D91B740040207A /* Utilities.swift */,
+				4635DD8E21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift */,
+				4635DD8C21DF86BF002C8061 /* PhotoPageContainerViewController.swift */,
 				462F64D321D2A6F30040207A /* exmple.json */,
+				4635DD9221DF87D0002C8061 /* Animation */,
 				46AF8EB221CE991500FE14DF /* Main.storyboard */,
 				46AF8EB521CE991600FE14DF /* Assets.xcassets */,
 				46AF8EB721CE991600FE14DF /* LaunchScreen.storyboard */,
@@ -221,12 +246,17 @@
 			files = (
 				462F64D221D2A65A0040207A /* Model.swift in Sources */,
 				46AF8ED121CE9FFD00FE14DF /* ImageCollectionViewCell.swift in Sources */,
+				4635DD9621DF87D0002C8061 /* ZoomTransitionController.swift in Sources */,
+				4635DD8F21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift in Sources */,
 				462F64D921D91B740040207A /* Utilities.swift in Sources */,
 				462F64DB21D92C6D0040207A /* UIView+Corner.swift in Sources */,
 				46AF8ECF21CE9B2000FE14DF /* FeedCollectionViewController.swift in Sources */,
 				462F64D021D278EB0040207A /* FeedViewModel.swift in Sources */,
+				4635DD8D21DF86BF002C8061 /* PhotoPageContainerViewController.swift in Sources */,
+				4635DD9721DF87D0002C8061 /* ZoomDismissalInteractionController.swift in Sources */,
 				46AF8EAF21CE991500FE14DF /* AppDelegate.swift in Sources */,
 				462F64D721D65AC70040207A /* FancyLayout.swift in Sources */,
+				4635DD9821DF87D0002C8061 /* ZoomAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
