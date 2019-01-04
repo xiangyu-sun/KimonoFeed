@@ -31,39 +31,58 @@
                                             <rect key="frame" x="8" y="0.0" width="193" height="245"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="MTT-17-7XU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="193" height="122"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="193" height="138"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8ej-7O-HuD">
-                                                    <rect key="frame" x="0.0" y="124" width="36.666666666666664" height="121"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8ej-7O-HuD">
+                                                    <rect key="frame" x="0.0" y="140" width="193" height="105"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="C9H-8T-rVf">
-                                                            <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="100.33333333333333"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9H-8T-rVf">
+                                                            <rect key="frame" x="0.0" y="0.0" width="193" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B62-f3-Xyd">
-                                                                    <rect key="frame" x="0.0" y="84.666666666666657" width="33" height="15.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="50"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz7-l3-HNj">
-                                                                    <rect key="frame" x="33" y="84.666666666666657" width="3.6666666666666643" height="15.666666666666671"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcR-kO-I4g">
+                                                                    <rect key="frame" x="8.3333333333333286" y="0.0" width="134.66666666666669" height="50"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz7-l3-HNj">
+                                                                    <rect key="frame" x="143" y="0.0" width="50" height="50"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-VK-2Qo">
-                                                            <rect key="frame" x="0.0" y="105.33333333333334" width="33" height="15.666666666666671"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5AU-h7-AKs">
+                                                            <rect key="frame" x="0.0" y="55" width="193" height="50"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-VK-2Qo">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="50"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-8D-Wwb">
+                                                                    <rect key="frame" x="8.3333333333333286" y="0.0" width="134.66666666666669" height="50"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPC-8b-2nx">
+                                                                    <rect key="frame" x="143" y="0.0" width="50" height="50"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -83,6 +102,7 @@
                                     <outlet property="imageView" destination="MTT-17-7XU" id="BEE-TQ-4CF"/>
                                     <outlet property="ownerLabel" destination="B62-f3-Xyd" id="Sws-81-zRN"/>
                                     <outlet property="titleLabel" destination="Mtc-VK-2Qo" id="TMc-EE-VLH"/>
+                                    <outlet property="viewsLabel" destination="cPC-8b-2nx" id="mRm-Qe-aCP"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

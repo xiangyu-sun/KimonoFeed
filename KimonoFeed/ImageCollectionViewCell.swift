@@ -13,6 +13,13 @@ class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var ownerLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var viewsLabel: UILabel!
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter
+    }()
     
     var imageTask: URLSessionDataTask?
     var imageInfoTask: URLSessionDataTask?
@@ -32,6 +39,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
         titleLabel.text = nil
+        dateLabel.text = nil
+        viewsLabel.text = nil
         imageTask?.cancel()
         imageTask = nil
         imageInfoTask?.cancel()
@@ -54,22 +63,25 @@ class ImageCollectionViewCell: UICollectionViewCell {
         imageTask?.resume()
         
         let infourl = URL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=14740156d6ac44b049ea94e201a50458&format=json&nojsoncallback=1&photo_id=\(photo.id)")!
-        let inforequest = URLRequest(url: infourl, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
+        let inforequest = URLRequest(url: infourl)
         
         imageInfoTask = URLSession.shared.dataTask(with: inforequest) { (data, response, error) in
             if let infoData = data{
                 do {
-                    let photo = try JSONDecoder().decode(Photo.self, from: infoData)
+                    let photoResponse = try JSONDecoder().decode(PhotoResponse.self, from: infoData)
+                    guard let postDateInterval = Double(photoResponse.photo.dates.posted) else { return }
                     DispatchQueue.main.async {
-                        self.dateLabel.text = photo.dates.posted
                         
-                        photo.publiceditability.cancomment
+                        self.dateLabel.text = ImageCollectionViewCell.dateFormatter.string(from: Date(timeIntervalSince1970: postDateInterval))
+                        
+                       self.viewsLabel.text = "\(photoResponse.photo.views) 👁‍🗨"
                     }
                 } catch {
-                    
+                    print(error)
                 }
             }
         }
+        
         imageInfoTask?.resume()
     }
 }

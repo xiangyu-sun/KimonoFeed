@@ -33,6 +33,10 @@ struct BriefPhotoInfo: Codable {
     var isfamily : Int
 }
 
+struct PhotoResponse: Codable {
+    var photo: Photo
+}
+
 struct Photo: Codable {
     
     struct Owner: Codable {
@@ -41,13 +45,12 @@ struct Photo: Codable {
         var realname : String
         var location : String
         var iconserver : String
-        var path_alias : String
+        var path_alias : String?
     }
     
     struct Date: Codable {
         var posted : String
         var taken : String
-        var takengranularity : String
         var takenunknown : String
         var lastupdate : String
     }
@@ -60,4 +63,5 @@ struct Photo: Codable {
     var owner : Owner
     var dates : Date
     var publiceditability : Publiceditability
+    var views: String
 }
