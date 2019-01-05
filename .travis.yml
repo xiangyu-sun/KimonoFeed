@@ -1,3 +1,6 @@
 language: objective-c
+osx_image: xcode10.1
+
 xcode_project: KimonoFeed.xcodeproj # path to your xcodeproj folder
 xcode_scheme: KimonoFeed
+xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
