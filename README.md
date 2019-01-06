@@ -1,5 +1,5 @@
 # KimonoFeed
-### Expression of boardom
+### PG-13
 [![Build Status](https://travis-ci.com/xiangyu-sun/KimonoFeed.svg?branch=master)](https://travis-ci.com/xiangyu-sun/KimonoFeed)
 
 ## Overview
