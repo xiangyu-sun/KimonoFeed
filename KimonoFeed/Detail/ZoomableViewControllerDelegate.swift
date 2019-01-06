@@ -1,5 +1,5 @@
 //
-//  ZoomableViewController.swift
+//  ZoomableImageViewController.swift
 //  KimonoFeed
 //
 //  Created by 孙翔宇 on 01/04/19.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol ZoomableViewControllerDelegate: class {
-    func photoZoomViewController(_ photoZoomViewController: ZoomableViewController, scrollViewDidScroll scrollView: UIScrollView)
+protocol ZoomableImageViewControllerDelegate: class {
+    func photoZoomViewController(_ photoZoomViewController: ZoomableImageViewController, scrollViewDidScroll scrollView: UIScrollView)
 }
 
-class ZoomableViewController: UIViewController {
+class ZoomableImageViewController: UIViewController {
     
     @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
@@ -21,7 +21,7 @@ class ZoomableViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     
-    weak var delegate: ZoomableViewControllerDelegate?
+    weak var delegate: ZoomableImageViewControllerDelegate?
     
     var image: UIImage!
     var index: Int = 0
@@ -88,10 +88,6 @@ class ZoomableViewController: UIViewController {
         isRotating = true
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     @objc func didDoubleTapWith(gestureRecognizer: UITapGestureRecognizer) {
         let pointInView = gestureRecognizer.location(in: imageView)
         var newZoomScale = scrollView.maximumZoomScale
@@ -142,7 +138,7 @@ class ZoomableViewController: UIViewController {
     }
 }
 
-extension ZoomableViewController: UIScrollViewDelegate {
+extension ZoomableImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }

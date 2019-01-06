@@ -16,7 +16,7 @@
 		4635DD9621DF87D0002C8061 /* ZoomTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD9321DF87D0002C8061 /* ZoomTransitionController.swift */; };
 		4635DD9721DF87D0002C8061 /* ZoomDismissalInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD9421DF87D0002C8061 /* ZoomDismissalInteractionController.swift */; };
 		4635DD9821DF87D0002C8061 /* ZoomAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD9521DF87D0002C8061 /* ZoomAnimator.swift */; };
-		4635DDBF21DFDADB002C8061 /* PhotoPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD8C21DF86BF002C8061 /* PhotoPageContainerViewController.swift */; };
+		4635DDBF21DFDADB002C8061 /* PageViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD8C21DF86BF002C8061 /* PageViewControllerContainer.swift */; };
 		4635DDC021DFDADB002C8061 /* ZoomableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DD8E21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift */; };
 		4635DDC321E23FDC002C8061 /* APIRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635DDC221E23FDC002C8061 /* APIRequestBuilder.swift */; };
 		46AF8EAF21CE991500FE14DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AF8EAE21CE991500FE14DF /* AppDelegate.swift */; };
@@ -58,7 +58,7 @@
 		462F64D621D65AC70040207A /* FancyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyLayout.swift; sourceTree = "<group>"; };
 		462F64D821D91B740040207A /* CGRect+Divide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Divide.swift"; sourceTree = "<group>"; };
 		462F64DA21D92C6D0040207A /* UIView+Corner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Corner.swift"; sourceTree = "<group>"; };
-		4635DD8C21DF86BF002C8061 /* PhotoPageContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPageContainerViewController.swift; sourceTree = "<group>"; };
+		4635DD8C21DF86BF002C8061 /* PageViewControllerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewControllerContainer.swift; sourceTree = "<group>"; };
 		4635DD8E21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		4635DD9321DF87D0002C8061 /* ZoomTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionController.swift; sourceTree = "<group>"; };
 		4635DD9421DF87D0002C8061 /* ZoomDismissalInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomDismissalInteractionController.swift; sourceTree = "<group>"; };
@@ -115,6 +115,27 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4635DDC421E24C51002C8061 /* Search Result */ = {
+			isa = PBXGroup;
+			children = (
+				46AF8ECE21CE9B2000FE14DF /* FeedCollectionViewController.swift */,
+				462F64D621D65AC70040207A /* FancyLayout.swift */,
+				462F64CF21D278EB0040207A /* FeedViewModel.swift */,
+				46AF8ED021CE9FFD00FE14DF /* ImageCollectionViewCell.swift */,
+			);
+			path = "Search Result";
+			sourceTree = "<group>";
+		};
+		4635DDC521E24C6A002C8061 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4635DD8C21DF86BF002C8061 /* PageViewControllerContainer.swift */,
+				4635DD8E21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift */,
+				4635DD9221DF87D0002C8061 /* Animation */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		46AF8EA221CE991500FE14DF = {
 			isa = PBXGroup;
 			children = (
@@ -141,13 +162,8 @@
 				46AF8EAE21CE991500FE14DF /* AppDelegate.swift */,
 				462F64D121D2A65A0040207A /* Model.swift */,
 				4635DDC221E23FDC002C8061 /* APIRequestBuilder.swift */,
-				46AF8ECE21CE9B2000FE14DF /* FeedCollectionViewController.swift */,
-				462F64D621D65AC70040207A /* FancyLayout.swift */,
-				462F64CF21D278EB0040207A /* FeedViewModel.swift */,
-				46AF8ED021CE9FFD00FE14DF /* ImageCollectionViewCell.swift */,
-				4635DD8E21DF86EA002C8061 /* ZoomableViewControllerDelegate.swift */,
-				4635DD8C21DF86BF002C8061 /* PhotoPageContainerViewController.swift */,
-				4635DD9221DF87D0002C8061 /* Animation */,
+				4635DDC421E24C51002C8061 /* Search Result */,
+				4635DDC521E24C6A002C8061 /* Detail */,
 				46AF8EB221CE991500FE14DF /* Main.storyboard */,
 				46AF8EB521CE991600FE14DF /* Assets.xcassets */,
 				46AF8EB721CE991600FE14DF /* LaunchScreen.storyboard */,
@@ -276,7 +292,7 @@
 				4635DDC321E23FDC002C8061 /* APIRequestBuilder.swift in Sources */,
 				462F64DB21D92C6D0040207A /* UIView+Corner.swift in Sources */,
 				46AF8ECF21CE9B2000FE14DF /* FeedCollectionViewController.swift in Sources */,
-				4635DDBF21DFDADB002C8061 /* PhotoPageContainerViewController.swift in Sources */,
+				4635DDBF21DFDADB002C8061 /* PageViewControllerContainer.swift in Sources */,
 				462F64D021D278EB0040207A /* FeedViewModel.swift in Sources */,
 				4635DD9721DF87D0002C8061 /* ZoomDismissalInteractionController.swift in Sources */,
 				46AF8EAF21CE991500FE14DF /* AppDelegate.swift in Sources */,

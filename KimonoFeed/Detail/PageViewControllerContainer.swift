@@ -25,8 +25,8 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
         return children[0] as! UIPageViewController
     }
     
-    var currentViewController: ZoomableViewController {
-        return pageViewController.viewControllers![0] as! ZoomableViewController
+    var currentViewController: ZoomableImageViewController {
+        return pageViewController.viewControllers![0] as! ZoomableImageViewController
     }
     
     var photos: [UIImage]!
@@ -50,7 +50,7 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
         singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didSingleTapWith(gestureRecognizer:)))
         pageViewController.view.addGestureRecognizer(singleTapGestureRecognizer)
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableViewController.self)") as! ZoomableViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableImageViewController.self)") as! ZoomableImageViewController
         vc.delegate = self
         vc.index = currentIndex
         vc.image = photos[currentIndex]
@@ -92,11 +92,6 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
         }
         
         return false
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func didPanWith(gestureRecognizer: UIPanGestureRecognizer) {
@@ -157,7 +152,7 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
             return nil
         }
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableViewController.self)") as! ZoomableViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableImageViewController.self)") as! ZoomableImageViewController
         vc.delegate = self
         vc.image = photos[currentIndex - 1]
         vc.index = currentIndex - 1
@@ -172,7 +167,7 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
             return nil
         }
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableViewController.self)") as! ZoomableViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableImageViewController.self)") as! ZoomableImageViewController
         vc.delegate = self
         singleTapGestureRecognizer.require(toFail: vc.doubleTapGestureRecognizer)
         vc.image = photos[currentIndex + 1]
@@ -183,7 +178,7 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
-        guard let nextVC = pendingViewControllers.first as? ZoomableViewController else {
+        guard let nextVC = pendingViewControllers.first as? ZoomableImageViewController else {
             return
         }
         
@@ -194,7 +189,7 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
         
         if (completed && nextIndex != nil) {
             previousViewControllers.forEach { vc in
-                let zoomVC = vc as! ZoomableViewController
+                let zoomVC = vc as! ZoomableImageViewController
                 zoomVC.scrollView.zoomScale = zoomVC.scrollView.minimumZoomScale
             }
 
@@ -207,9 +202,9 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
     
 }
 
-extension PageViewControllerContainer: ZoomableViewControllerDelegate {
+extension PageViewControllerContainer: ZoomableImageViewControllerDelegate {
     
-    func photoZoomViewController(_ photoZoomViewController: ZoomableViewController, scrollViewDidScroll scrollView: UIScrollView) {
+    func photoZoomViewController(_ photoZoomViewController: ZoomableImageViewController, scrollViewDidScroll scrollView: UIScrollView) {
         if scrollView.zoomScale != scrollView.minimumZoomScale && currentMode != .full {
             changeScreenMode(to: .full)
             currentMode = .full

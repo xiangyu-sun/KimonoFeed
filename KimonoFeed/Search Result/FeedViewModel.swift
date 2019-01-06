@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 class FeedViewModel : NSObject {
     @objc dynamic var result: SearchResult?
@@ -25,7 +26,7 @@ class FeedViewModel : NSObject {
             do {
                 self.result = try JSONDecoder().decode(SearchResult.self, from: feedData)
             } catch {
-                
+                os_log("%@", error.localizedDescription)
             }
             }.resume()
     }

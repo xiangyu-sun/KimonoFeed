@@ -24,7 +24,7 @@ class FeedCollectionViewController: UICollectionViewController {
     //These variables are used to hold any updates to the safeAreaInsets
     //that might not have been propagated to this ViewController. This is required
     //for supporting devices running on >= iOS 11. These will be set manually from
-    //ZoomableViewController.swift to ensure any changes to the safeAreaInsets
+    //ZoomableImageViewController.swift to ensure any changes to the safeAreaInsets
     //after the device rotates are pushed to this ViewController. This is required
     //to ensure the collectionView.convert() function calculates the proper
     //frame result inside referenceImageViewFrameInTransitioningView()
