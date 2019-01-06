@@ -18,15 +18,15 @@ class ZoomDismissalInteractionController: NSObject {
     
     func didPanWith(gestureRecognizer: UIPanGestureRecognizer) {
         
-        guard let transitionContext = self.transitionContext,
-            let animator = self.animator as? ZoomAnimator,
+        guard let transitionContext = transitionContext,
+            let animator = animator as? ZoomAnimator,
             let transitionImageView = animator.transitionImageView,
             let fromVC = transitionContext.viewController(forKey: .from),
             let toVC = transitionContext.viewController(forKey: .to),
             let fromReferenceImageView = animator.fromDelegate?.referenceImageView(for: animator),
             let toReferenceImageView = animator.toDelegate?.referenceImageView(for: animator),
-            let fromReferenceImageViewFrame = self.fromReferenceImageViewFrame,
-            let toReferenceImageViewFrame = self.toReferenceImageViewFrame else {
+            let fromReferenceImageViewFrame = fromReferenceImageViewFrame,
+            let toReferenceImageViewFrame = toReferenceImageViewFrame else {
                 return
         }
         
@@ -159,7 +159,7 @@ extension ZoomDismissalInteractionController: UIViewControllerInteractiveTransit
         
         let containerView = transitionContext.containerView
         
-        guard let animator = self.animator as? ZoomAnimator,
+        guard let animator = animator as? ZoomAnimator,
             let fromVC = transitionContext.viewController(forKey: .from),
             let toVC = transitionContext.viewController(forKey: .to),
             let fromReferenceImageViewFrame = animator.fromDelegate?.referenceImageViewFrameInTransitioningView(for: animator),

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os
 
 class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
@@ -48,21 +49,28 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func pullImageAndInfomation(photo: BriefPhotoInfo) {
-        let url = URL(string: "https://farm\(photo.farm).staticflickr.com/\(photo.server)/\(photo.id)_\(photo.secret)_c.jpg")!
+    func updateImageViewWith(_ photo: BriefPhotoInfo) {
+        guard let url = APIRequestBuilder.buildPhotoPublicURL(photo: photo) else {
+            return
+        }
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
         
-        imageTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        imageTask = URLSession.shared.dataTask(with: request) {(data, response, error) in
             if let imageData = data,
                 let image = UIImage(data: imageData){
-                DispatchQueue.main.async {
-                    self.imageView.image = image
+                DispatchQueue.main.async { [weak self] in
+                    self?.imageView.image = image
                 }
             }
         }
         imageTask?.resume()
+    }
+    
+    func updatePhotoInfoUIWith(_ photo: BriefPhotoInfo) {
+        guard let infourl = APIRequestBuilder.buildPhotoInfoURL(photo: photo) else {
+            return
+        }
         
-        let infourl = URL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=14740156d6ac44b049ea94e201a50458&format=json&nojsoncallback=1&photo_id=\(photo.id)")!
         let inforequest = URLRequest(url: infourl)
         
         imageInfoTask = URLSession.shared.dataTask(with: inforequest) { (data, response, error) in
@@ -70,14 +78,14 @@ class ImageCollectionViewCell: UICollectionViewCell {
                 do {
                     let photoResponse = try JSONDecoder().decode(PhotoResponse.self, from: infoData)
                     guard let postDateInterval = Double(photoResponse.photo.dates.posted) else { return }
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async {  [weak self] in
                         
-                        self.dateLabel.text = ImageCollectionViewCell.dateFormatter.string(from: Date(timeIntervalSince1970: postDateInterval))
+                        self?.dateLabel.text = ImageCollectionViewCell.dateFormatter.string(from: Date(timeIntervalSince1970: postDateInterval))
                         
-                       self.viewsLabel.text = "\(photoResponse.photo.views) 👁‍🗨"
+                        self?.viewsLabel.text = "\(photoResponse.photo.views) 👁‍🗨"
                     }
                 } catch {
-                    print(error)
+                    os_log("%@", error.localizedDescription)
                 }
             }
         }

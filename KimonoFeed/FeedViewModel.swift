@@ -16,7 +16,9 @@ class FeedViewModel : NSObject {
     }
     
     func reload() {
-        let url = URL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=14740156d6ac44b049ea94e201a50458&text=kimono&format=json&nojsoncallback=1")!
+        
+        guard let url = APIRequestBuilder.buildReloadURL() else { return }
+        
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let feedData = data else {return}

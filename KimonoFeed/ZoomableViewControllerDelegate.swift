@@ -32,26 +32,26 @@ class ZoomableViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapWith(gestureRecognizer:)))
-        self.doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapWith(gestureRecognizer:)))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scrollView.delegate = self
+        scrollView.delegate = self
         if #available(iOS 11, *) {
-            self.scrollView.contentInsetAdjustmentBehavior = .never
+            scrollView.contentInsetAdjustmentBehavior = .never
         }
-        self.imageView.image = self.image
-        self.imageView.frame = CGRect(x: self.imageView.frame.origin.x,
-                                      y: self.imageView.frame.origin.y,
-                                      width: self.image.size.width,
-                                      height: self.image.size.height)
-        self.view.addGestureRecognizer(self.doubleTapGestureRecognizer)
+        imageView.image = image
+        imageView.frame = CGRect(x: imageView.frame.origin.x,
+                                      y: imageView.frame.origin.y,
+                                      width: image.size.width,
+                                      height: image.size.height)
+        view.addGestureRecognizer(doubleTapGestureRecognizer)
         
         //Update the constraints to prevent the constraints from
         //being calculated incorrectly on certain iOS devices
-        self.updateConstraintsForSize(self.view.frame.size)
+        updateConstraintsForSize(view.frame.size)
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,15 +69,15 @@ class ZoomableViewController: UIViewController {
         if #available(iOS 11, *) {
             
             //Get the parent view controller (ViewController) from the navigation controller
-            guard let parentVC = self.navigationController?.viewControllers.first as? FeedCollectionViewController else {
+            guard let parentVC = navigationController?.viewControllers.first as? FeedCollectionViewController else {
                 return
             }
             
             //Update the ViewController's left and right local safeAreaInset variables
             //with the safeAreaInsets for this current view. These will be used to
             //update the contentInsets of the collectionView inside ViewController
-            parentVC.currentLeftSafeAreaInset = self.view.safeAreaInsets.left
-            parentVC.currentRightSafeAreaInset = self.view.safeAreaInsets.right
+            parentVC.currentLeftSafeAreaInset = view.safeAreaInsets.left
+            parentVC.currentRightSafeAreaInset = view.safeAreaInsets.right
             
         }
         
@@ -85,7 +85,7 @@ class ZoomableViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        self.isRotating = true
+        isRotating = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,20 +93,20 @@ class ZoomableViewController: UIViewController {
     }
     
     @objc func didDoubleTapWith(gestureRecognizer: UITapGestureRecognizer) {
-        let pointInView = gestureRecognizer.location(in: self.imageView)
-        var newZoomScale = self.scrollView.maximumZoomScale
+        let pointInView = gestureRecognizer.location(in: imageView)
+        var newZoomScale = scrollView.maximumZoomScale
         
-        if self.scrollView.zoomScale >= newZoomScale || abs(self.scrollView.zoomScale - newZoomScale) <= 0.01 {
-            newZoomScale = self.scrollView.minimumZoomScale
+        if scrollView.zoomScale >= newZoomScale || abs(scrollView.zoomScale - newZoomScale) <= 0.01 {
+            newZoomScale = scrollView.minimumZoomScale
         }
         
-        let width = self.scrollView.bounds.width / newZoomScale
-        let height = self.scrollView.bounds.height / newZoomScale
+        let width = scrollView.bounds.width / newZoomScale
+        let height = scrollView.bounds.height / newZoomScale
         let originX = pointInView.x - (width / 2.0)
         let originY = pointInView.y - (height / 2.0)
         
         let rectToZoomTo = CGRect(x: originX, y: originY, width: width, height: height)
-        self.scrollView.zoom(to: rectToZoomTo, animated: true)
+        scrollView.zoom(to: rectToZoomTo, animated: true)
     }
     
     fileprivate func updateZoomScaleForSize(_ size: CGSize) {
@@ -118,10 +118,10 @@ class ZoomableViewController: UIViewController {
         
         //scrollView.zoomScale is only updated once when
         //the view first loads and each time the device is rotated
-        if self.isRotating || self.firstTimeLoaded {
+        if isRotating || firstTimeLoaded {
             scrollView.zoomScale = minScale
-            self.isRotating = false
-            self.firstTimeLoaded = false
+            isRotating = false
+            firstTimeLoaded = false
         }
         
         scrollView.maximumZoomScale = minScale * 4
@@ -136,9 +136,9 @@ class ZoomableViewController: UIViewController {
         imageViewLeadingConstraint.constant = xOffset
         imageViewTrailingConstraint.constant = xOffset
         
-        let contentHeight = yOffset * 2 + self.imageView.frame.height
+        let contentHeight = yOffset * 2 + imageView.frame.height
         view.layoutIfNeeded()
-        self.scrollView.contentSize = CGSize(width: self.scrollView.contentSize.width, height: contentHeight)
+        scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: contentHeight)
     }
 }
 
@@ -148,10 +148,10 @@ extension ZoomableViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        updateConstraintsForSize(self.view.bounds.size)
+        updateConstraintsForSize(view.bounds.size)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegate?.photoZoomViewController(self, scrollViewDidScroll: scrollView)
+        delegate?.photoZoomViewController(self, scrollViewDidScroll: scrollView)
     }
 }

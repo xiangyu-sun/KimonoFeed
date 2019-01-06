@@ -22,11 +22,11 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
     weak var delegate: PageViewControllerContainerDelegate?
     
     var pageViewController: UIPageViewController {
-        return self.children[0] as! UIPageViewController
+        return children[0] as! UIPageViewController
     }
     
     var currentViewController: ZoomableViewController {
-        return self.pageViewController.viewControllers![0] as! ZoomableViewController
+        return pageViewController.viewControllers![0] as! ZoomableViewController
     }
     
     var photos: [UIImage]!
@@ -41,31 +41,31 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pageViewController.delegate = self
-        self.pageViewController.dataSource = self
-        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanWith(gestureRecognizer:)))
-        self.panGestureRecognizer.delegate = self
-        self.pageViewController.view.addGestureRecognizer(self.panGestureRecognizer)
+        pageViewController.delegate = self
+        pageViewController.dataSource = self
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanWith(gestureRecognizer:)))
+        panGestureRecognizer.delegate = self
+        pageViewController.view.addGestureRecognizer(panGestureRecognizer)
         
-        self.singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didSingleTapWith(gestureRecognizer:)))
-        self.pageViewController.view.addGestureRecognizer(self.singleTapGestureRecognizer)
+        singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didSingleTapWith(gestureRecognizer:)))
+        pageViewController.view.addGestureRecognizer(singleTapGestureRecognizer)
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableViewController.self)") as! ZoomableViewController
         vc.delegate = self
-        vc.index = self.currentIndex
-        vc.image = self.photos[self.currentIndex]
-        self.singleTapGestureRecognizer.require(toFail: vc.doubleTapGestureRecognizer)
+        vc.index = currentIndex
+        vc.image = photos[currentIndex]
+        singleTapGestureRecognizer.require(toFail: vc.doubleTapGestureRecognizer)
         let viewControllers = [
             vc
         ]
         
-        self.pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
+        pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         if let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
-            let velocity = gestureRecognizer.velocity(in: self.view)
+            let velocity = gestureRecognizer.velocity(in: view)
             
             var velocityCheck : Bool = false
             
@@ -85,8 +85,8 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
-        if otherGestureRecognizer == self.currentViewController.scrollView.panGestureRecognizer {
-            if self.currentViewController.scrollView.contentOffset.y == 0 {
+        if otherGestureRecognizer == currentViewController.scrollView.panGestureRecognizer {
+            if currentViewController.scrollView.contentOffset.y == 0 {
                 return true
             }
         }
@@ -102,36 +102,36 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
     @objc func didPanWith(gestureRecognizer: UIPanGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:
-            self.currentViewController.scrollView.isScrollEnabled = false
-            self.transitionController.isInteractive = true
-            let _ = self.navigationController?.popViewController(animated: true)
+            currentViewController.scrollView.isScrollEnabled = false
+            transitionController.isInteractive = true
+            let _ = navigationController?.popViewController(animated: true)
         case .ended:
-            if self.transitionController.isInteractive {
-                self.currentViewController.scrollView.isScrollEnabled = true
-                self.transitionController.isInteractive = false
-                self.transitionController.didPanWith(gestureRecognizer: gestureRecognizer)
+            if transitionController.isInteractive {
+                currentViewController.scrollView.isScrollEnabled = true
+                transitionController.isInteractive = false
+                transitionController.didPanWith(gestureRecognizer: gestureRecognizer)
             }
         default:
-            if self.transitionController.isInteractive {
-                self.transitionController.didPanWith(gestureRecognizer: gestureRecognizer)
+            if transitionController.isInteractive {
+                transitionController.didPanWith(gestureRecognizer: gestureRecognizer)
             }
         }
     }
     
     @objc func didSingleTapWith(gestureRecognizer: UITapGestureRecognizer) {
-        if self.currentMode == .full {
+        if currentMode == .full {
             changeScreenMode(to: .normal)
-            self.currentMode = .normal
+            currentMode = .normal
         } else {
             changeScreenMode(to: .full)
-            self.currentMode = .full
+            currentMode = .full
         }
 
     }
     
     func changeScreenMode(to: ScreenMode) {
         if to == .full {
-            self.navigationController?.setNavigationBarHidden(true, animated: false)
+            navigationController?.setNavigationBarHidden(true, animated: false)
             UIView.animate(withDuration: 0.25,
                            animations: {
                             self.view.backgroundColor = .black
@@ -139,7 +139,7 @@ class PageViewControllerContainer: UIViewController, UIGestureRecognizerDelegate
             }, completion: { completed in
             })
         } else {
-            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            navigationController?.setNavigationBarHidden(false, animated: false)
             UIView.animate(withDuration: 0.25,
                            animations: {
                             self.view.backgroundColor = .white
@@ -159,23 +159,23 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableViewController.self)") as! ZoomableViewController
         vc.delegate = self
-        vc.image = self.photos[currentIndex - 1]
+        vc.image = photos[currentIndex - 1]
         vc.index = currentIndex - 1
-        self.singleTapGestureRecognizer.require(toFail: vc.doubleTapGestureRecognizer)
+        singleTapGestureRecognizer.require(toFail: vc.doubleTapGestureRecognizer)
         return vc
         
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        if currentIndex == (self.photos.count - 1) {
+        if currentIndex == (photos.count - 1) {
             return nil
         }
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(ZoomableViewController.self)") as! ZoomableViewController
         vc.delegate = self
-        self.singleTapGestureRecognizer.require(toFail: vc.doubleTapGestureRecognizer)
-        vc.image = self.photos[currentIndex + 1]
+        singleTapGestureRecognizer.require(toFail: vc.doubleTapGestureRecognizer)
+        vc.image = photos[currentIndex + 1]
         vc.index = currentIndex + 1
         return vc
         
@@ -187,22 +187,22 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
             return
         }
         
-        self.nextIndex = nextVC.index
+        nextIndex = nextVC.index
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
-        if (completed && self.nextIndex != nil) {
+        if (completed && nextIndex != nil) {
             previousViewControllers.forEach { vc in
                 let zoomVC = vc as! ZoomableViewController
                 zoomVC.scrollView.zoomScale = zoomVC.scrollView.minimumZoomScale
             }
 
-            self.currentIndex = self.nextIndex!
-            self.delegate?.containerViewController(self, indexDidUpdate: self.currentIndex)
+            currentIndex = nextIndex!
+            delegate?.containerViewController(self, indexDidUpdate: currentIndex)
         }
         
-        self.nextIndex = nil
+        nextIndex = nil
     }
     
 }
@@ -210,9 +210,9 @@ extension PageViewControllerContainer: UIPageViewControllerDelegate, UIPageViewC
 extension PageViewControllerContainer: ZoomableViewControllerDelegate {
     
     func photoZoomViewController(_ photoZoomViewController: ZoomableViewController, scrollViewDidScroll scrollView: UIScrollView) {
-        if scrollView.zoomScale != scrollView.minimumZoomScale && self.currentMode != .full {
-            self.changeScreenMode(to: .full)
-            self.currentMode = .full
+        if scrollView.zoomScale != scrollView.minimumZoomScale && currentMode != .full {
+            changeScreenMode(to: .full)
+            currentMode = .full
         }
     }
 }
@@ -226,10 +226,10 @@ extension PageViewControllerContainer: ZoomAnimatorDelegate {
     }
     
     func referenceImageView(for zoomAnimator: ZoomAnimator) -> UIImageView? {
-        return self.currentViewController.imageView
+        return currentViewController.imageView
     }
     
     func referenceImageViewFrameInTransitioningView(for zoomAnimator: ZoomAnimator) -> CGRect? {        
-        return self.currentViewController.scrollView.convert(self.currentViewController.imageView.frame, to: self.currentViewController.view)
+        return currentViewController.scrollView.convert(currentViewController.imageView.frame, to: currentViewController.view)
     }
 }

@@ -29,15 +29,15 @@ class ZoomAnimator: NSObject {
         
         guard let toVC = transitionContext.viewController(forKey: .to),
             let fromVC = transitionContext.viewController(forKey: .from),
-            let fromReferenceImageView = self.fromDelegate?.referenceImageView(for: self),
-            let toReferenceImageView = self.toDelegate?.referenceImageView(for: self),
-            let fromReferenceImageViewFrame = self.fromDelegate?.referenceImageViewFrameInTransitioningView(for: self)
+            let fromReferenceImageView = fromDelegate?.referenceImageView(for: self),
+            let toReferenceImageView = toDelegate?.referenceImageView(for: self),
+            let fromReferenceImageViewFrame = fromDelegate?.referenceImageViewFrameInTransitioningView(for: self)
             else {
                 return
         }
         
-        self.fromDelegate?.transitionWillStartWith(zoomAnimator: self)
-        self.toDelegate?.transitionWillStartWith(zoomAnimator: self)
+        fromDelegate?.transitionWillStartWith(zoomAnimator: self)
+        toDelegate?.transitionWillStartWith(zoomAnimator: self)
         
         toVC.view.alpha = 0
         toReferenceImageView.isHidden = true
@@ -45,7 +45,7 @@ class ZoomAnimator: NSObject {
         
         let referenceImage = fromReferenceImageView.image!
         
-        if self.transitionImageView == nil {
+        if transitionImageView == nil {
             let transitionImageView = UIImageView(image: referenceImage)
             transitionImageView.contentMode = .scaleAspectFill
             transitionImageView.clipsToBounds = true
@@ -87,22 +87,22 @@ class ZoomAnimator: NSObject {
         
         guard let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
             let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
-            let fromReferenceImageView = self.fromDelegate?.referenceImageView(for: self),
-            let toReferenceImageView = self.toDelegate?.referenceImageView(for: self),
-            let fromReferenceImageViewFrame = self.fromDelegate?.referenceImageViewFrameInTransitioningView(for: self),
-            let toReferenceImageViewFrame = self.toDelegate?.referenceImageViewFrameInTransitioningView(for: self)
+            let fromReferenceImageView = fromDelegate?.referenceImageView(for: self),
+            let toReferenceImageView = toDelegate?.referenceImageView(for: self),
+            let fromReferenceImageViewFrame = fromDelegate?.referenceImageViewFrameInTransitioningView(for: self),
+            let toReferenceImageViewFrame = toDelegate?.referenceImageViewFrameInTransitioningView(for: self)
             else {
                 return
         }
         
-        self.fromDelegate?.transitionWillStartWith(zoomAnimator: self)
-        self.toDelegate?.transitionWillStartWith(zoomAnimator: self)
+        fromDelegate?.transitionWillStartWith(zoomAnimator: self)
+        toDelegate?.transitionWillStartWith(zoomAnimator: self)
         
         toReferenceImageView.isHidden = true
         
         let referenceImage = fromReferenceImageView.image!
         
-        if self.transitionImageView == nil {
+        if transitionImageView == nil {
             let transitionImageView = UIImageView(image: referenceImage)
             transitionImageView.contentMode = .scaleAspectFill
             transitionImageView.clipsToBounds = true
@@ -156,7 +156,7 @@ class ZoomAnimator: NSObject {
 
 extension ZoomAnimator: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        if self.isPresenting {
+        if isPresenting {
             return 0.5
         } else {
             return 0.25
@@ -164,7 +164,7 @@ extension ZoomAnimator: UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        if self.isPresenting {
+        if isPresenting {
             animateZoomInTransition(using: transitionContext)
         } else {
             animateZoomOutTransition(using: transitionContext)

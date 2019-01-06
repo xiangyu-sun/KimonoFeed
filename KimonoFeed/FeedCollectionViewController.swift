@@ -35,9 +35,9 @@ class FeedCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        observation = observe(\.feedViewModel.result, options:  [.old, .new]) {[unowned self] (object, change) in
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+        observation = observe(\.feedViewModel.result, options:  [.old, .new]) {(object, change) in
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
             }
         }
         
@@ -54,50 +54,6 @@ class FeedCollectionViewController: UICollectionViewController {
             
             self.currentLeftSafeAreaInset = self.view.safeAreaInsets.left
             self.currentRightSafeAreaInset = self.view.safeAreaInsets.right
-        }
-        
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        if #available(iOS 11, *) {
-            //Do nothing
-        }
-        else {
-            
-            //Support for devices running iOS 10 and below
-            
-            //Check to see if the view is currently visible, and if so,
-            //animate the frame transition to the new orientation
-            if self.viewIfLoaded?.window != nil {
-                
-                coordinator.animate(alongsideTransition: { _ in
-                    
-                    //This needs to be called inside viewWillTransition() instead of viewWillLayoutSubviews()
-                    //for devices running iOS 10.0 and earlier otherwise the frames for the view and the
-                    //collectionView will not be calculated properly.
-                    self.view.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
-                    self.collectionView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
-                    
-                }, completion: { _ in
-                    
-                    //Invalidate the collectionViewLayout
-                    self.collectionView.collectionViewLayout.invalidateLayout()
-                    
-                })
-                
-            }
-                //Otherwise, do not animate the transition
-            else {
-                
-                self.view.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
-                self.collectionView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
-                
-                //Invalidate the collectionViewLayout
-                self.collectionView.collectionViewLayout.invalidateLayout()
-                
-            }
         }
         
     }
@@ -182,7 +138,8 @@ class FeedCollectionViewController: UICollectionViewController {
             else {
                 return
         }
-        imageCell.pullImageAndInfomation(photo: photo)
+        imageCell.updateImageViewWith(photo)
+        imageCell.updatePhotoInfoUIWith(photo)
 
     }
     
